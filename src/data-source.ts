@@ -13,17 +13,17 @@ import "dotenv/config";
     de forma correta.
 */
 
-export const AppDataSource =
+const AppDataSource =
   process.env.NODE_ENV === "test"
-    ? new DataSource({
-        type: "sqlite",
-        database: ":memory:",
-        entities: ["src/entities/*.ts"],
-        synchronize: true,
-      })
+    ?  new DataSource({
+      type: "sqlite",
+      database: ":memory:",
+      entities: ["src/entities/*.ts"],
+      synchronize: true,
+    })
     : new DataSource({
         type: "postgres",
-        host: "localhost",
+        host: process.env.POSTGRES_HOST,
         port: 5432,
         username: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
@@ -33,3 +33,13 @@ export const AppDataSource =
         entities: ["src/entities/*.ts"],
         migrations: ["src/migrations/*.ts"],
       });
+
+export default AppDataSource
+
+AppDataSource.initialize()
+.then(() => {
+    console.log("Data Source has been initialized!")
+})
+.catch((err) => {
+    console.error("Error during Data Source initialization", err)
+})
