@@ -14,7 +14,7 @@ import "dotenv/config";
 */
 
 const AppDataSource =
-  process.env.NODE_ENV === "test"
+    process.env.NODE_ENV === "test"
     ?  new DataSource({
       type: "sqlite",
       database: ":memory:",

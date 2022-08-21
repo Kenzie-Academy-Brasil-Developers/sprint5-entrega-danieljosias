@@ -11,11 +11,11 @@ const deleteUserSevices = async (id: string) =>{
     const deleteAccount = users.find(user => user.id === id)
 
     if(!deleteAccount){
-        return {message: 'User not exists'}
+        throw new Error('User not exists')
     }
     
     await userRepository.delete(deleteAccount!.id)
-    return false
+    return true
 }
 
 export default deleteUserSevices

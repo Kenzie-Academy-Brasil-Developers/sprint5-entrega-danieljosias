@@ -18,11 +18,12 @@ const updateUserSevices = async ({ name, email, password, age }:IUser) => {
 
     const userRepository = AppDataSource.getRepository(User)
     const users = await userRepository.find()
-    const account  = users.find(user => user.email === email)
+
+    /* const account  = users.find(user => user.email === email)
 
     if(account){
-        throw new Error('Email already exists')
-    }
+        throw new Error('User not exists')
+    } */
 
     const user = new User()
     user.name = name

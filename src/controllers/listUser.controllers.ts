@@ -4,7 +4,9 @@ import listUserSevices from "../services/listUser.services";
 const listUserController = async (req: Request, res:Response) =>{
     try {
         const user = await listUserSevices()
-        return res.status(200).json(user)
+        return res.status(200).json({
+            user: user
+        })
         
     } catch (error) {
         if(error instanceof Error){

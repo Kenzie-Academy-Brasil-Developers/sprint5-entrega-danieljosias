@@ -21,9 +21,13 @@ const createUserSevices = async ({ name, email, password, age }:IUser) =>{
     const emailAlreadyExists = users.find(()=> user.email === email)
 
     if(emailAlreadyExists){
-        throw new Error('Email already exists') 
+        throw new Error()
     }
 
+    if(name === undefined || email === undefined || password === undefined || age === undefined){
+        return true
+    }
+    
     const user = new User()
     user.name = name
     user.email = email
@@ -34,8 +38,7 @@ const createUserSevices = async ({ name, email, password, age }:IUser) =>{
     
     userRepository.create(user)
     await userRepository.save(user)
-
-    return user
+    return {id: user.id,name: user.name, email: user.email, age: user.age, created_at: user.created_at, updated_at: user.updated_at}
 }
 
 export default createUserSevices

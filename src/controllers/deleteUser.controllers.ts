@@ -7,10 +7,17 @@ const deleteUserController = async (req: Request, res:Response) =>{
     try {
         //services here
         const user = await deleteUserSevices(id)
-        return res.status(200).json({
-            messsage: 'User deleted',
-            user: user
-        })
+
+        if(user === true){
+            return res.status(404).json({
+                message: 'User not exists'
+            })
+        }else{
+            return res.status(200).json({
+                messsage: 'User deleted',
+                user: user
+            })
+        }
         
     } catch (error) {
         if(error instanceof Error){
