@@ -1,5 +1,5 @@
 //data-source
-import AppDataSource from '../data-source'
+import {AppDataSource} from '../data-source'
 
 //entity
 import { User } from '../entities/user.entity'
@@ -21,7 +21,7 @@ const createUserSevices = async ({ name, email, password, age }:IUser) =>{
     const emailAlreadyExists = users.find(()=> user.email === email)
 
     if(emailAlreadyExists){
-        throw new Error()
+        throw new Error("error")
     }
 
     if(name === undefined || email === undefined || password === undefined || age === undefined){

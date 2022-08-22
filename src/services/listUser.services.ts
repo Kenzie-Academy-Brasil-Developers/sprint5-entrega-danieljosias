@@ -1,5 +1,5 @@
 //AppDataSource
-import AppDataSource from '../data-source'
+import {AppDataSource} from '../data-source'
 
 //entity
 import { User } from '../entities/user.entity'

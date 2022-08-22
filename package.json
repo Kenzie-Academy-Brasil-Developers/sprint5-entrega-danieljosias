@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
     "typeorm": "typeorm-ts-node-commonjs",
-    "dev": "ts-node-dev src/app.ts"
+    "dev": "ts-node-dev src/server.ts"
   },
   "devDependencies": {
     "@types/babel__core": "^7.1.12",

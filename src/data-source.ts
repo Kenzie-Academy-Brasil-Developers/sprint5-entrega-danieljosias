@@ -13,12 +13,12 @@ import "dotenv/config";
     de forma correta.
 */
 
-const AppDataSource =
+export const AppDataSource =
     process.env.NODE_ENV === "test"
     ?  new DataSource({
       type: "sqlite",
       database: ":memory:",
-      entities: ["src/entities/*.ts"],
+      entities: ["src/entities/*.entity.ts"],
       synchronize: true,
     })
     : new DataSource({
@@ -30,11 +30,11 @@ const AppDataSource =
         database: process.env.POSTGRES_DB,
         synchronize: false,
         logging: true,
-        entities: ["src/entities/*.ts"],
+        entities: ["src/entities/*.entity.ts"],
         migrations: ["src/migrations/*.ts"],
       });
 
-export default AppDataSource
+
 
 AppDataSource.initialize()
 .then(() => {

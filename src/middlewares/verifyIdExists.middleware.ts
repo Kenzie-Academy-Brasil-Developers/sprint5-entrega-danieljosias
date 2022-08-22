@@ -2,7 +2,7 @@
 import { Request, Response, NextFunction } from 'express'
 
 //AppDataSource
-import AppDataSource from '../data-source'
+import {AppDataSource} from '../data-source'
 
 //entity
 import { User } from '../entities/user.entity'
