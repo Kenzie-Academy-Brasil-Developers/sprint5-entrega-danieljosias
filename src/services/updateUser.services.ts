@@ -10,7 +10,10 @@ import {IUser} from '../interfaces/user/index'
 //libs
 import bcrypt from 'bcrypt'
 
-const updateUserSevices = async ({ name, email, password, age }:IUser) => {
+//Error
+import { AppError } from '../errors/AppError'
+
+const updateUserSevices = async ({ name, email, password, age }:IUser,id:string) => {
     //regras de negócios
     const date = new Date()
     const newDate = date.toUTCString()
@@ -21,8 +24,8 @@ const updateUserSevices = async ({ name, email, password, age }:IUser) => {
 
     /* const account  = users.find(user => user.email === email)
 
-    if(account){
-        throw new Error('User not exists')
+    if(!account){
+        throw new AppError(404,'User not exists')
     } */
 
     const user = new User()
@@ -33,7 +36,7 @@ const updateUserSevices = async ({ name, email, password, age }:IUser) => {
     user.created_at = SplitDate
     user.updated_at = SplitDate
 
-    userRepository.update(user, {name: user.name, email: user.email, password: user.password, age: user.age, created_at: user.created_at, updated_at: user.updated_at})
+    userRepository.update(id, {name: user.name, email: user.email, password: user.password, age: user.age, created_at: user.created_at, updated_at: user.updated_at})
     await userRepository.save(user)
 
     return user

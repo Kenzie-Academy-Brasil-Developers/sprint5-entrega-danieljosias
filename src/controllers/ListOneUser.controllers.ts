@@ -10,7 +10,7 @@ const listOneUserController = async (req: Request, res:Response) =>{
 
     } catch (error) {
         if(error instanceof Error){
-            return res.status(400).send({
+            return res.status(404).send({
                 "error": error.name,
                 "message": error.message
             })

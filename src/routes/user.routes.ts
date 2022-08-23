@@ -10,13 +10,13 @@ import deleteUserController from '../controllers/deleteUser.controllers'
 
 //middlewares
 import verifyIdExists from '../middlewares/verifyIdExists.middleware'
-import verifyLength from '../middlewares/verifyLength.middleware'
+
 
 //routes
 routes.post('/users',userCreateController)
-routes.get('/users',/* verifyLength, */listUserController)
-routes.get('/users/:id',listOneUserController)
+routes.get('/users',listUserController)
+routes.get('/users/:id',verifyIdExists,listOneUserController)
 routes.patch('/users/:id',verifyIdExists,updateUserController)
-routes.delete('/users/:id',deleteUserController)
+routes.delete('/users/:id',verifyIdExists,deleteUserController)
 
 export default routes

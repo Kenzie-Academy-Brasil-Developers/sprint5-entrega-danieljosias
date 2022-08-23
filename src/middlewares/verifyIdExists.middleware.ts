@@ -6,6 +6,7 @@ import {AppDataSource} from '../data-source'
 
 //entity
 import { User } from '../entities/user.entity'
+import { AppError } from '../errors/AppError'
 
 const verifyIdExists = async (req: Request, res: Response, next: NextFunction) =>{
     const { id } = req.params
@@ -15,19 +16,15 @@ const verifyIdExists = async (req: Request, res: Response, next: NextFunction) =
         const users = await userRepository.find()
         const isExists = users.find(user => user.id === id)
 
-        if(isExists){
-            next()
+        if(!isExists){
+            throw new AppError(404,"message")
         }else{
-            return res.status(404).send(
-                {
-                    message: 'User not exists'
-                }
-            )
+            next()
         }
     
     } catch (error) {
         if(error instanceof Error){
-            return res.status(400).send({
+            return res.status(404).send({
                 "error": error.name,
                 "message": 'error.message'
             })

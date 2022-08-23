@@ -1,5 +1,5 @@
-import { app } from "./app";
-import AppDataSource  from "./data-source";
+import  app  from "./app";
+import {AppDataSource}  from "./data-source";
 
 const init = async () => {
   const PORT = process.env.PORT || 3000;

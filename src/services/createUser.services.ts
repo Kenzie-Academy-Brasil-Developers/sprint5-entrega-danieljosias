@@ -10,6 +10,9 @@ import { IUser } from '../interfaces/user/index'
 //libs
 import bcrypt from 'bcrypt'
 
+//Error
+import { AppError } from '../errors/AppError'
+
 const createUserSevices = async ({ name, email, password, age }:IUser) =>{
     //regras de negócio
     const date = new Date()
@@ -18,14 +21,14 @@ const createUserSevices = async ({ name, email, password, age }:IUser) =>{
 
     const userRepository = AppDataSource.getRepository(User)
     const users = await userRepository.find()
-    const emailAlreadyExists = users.find(()=> user.email === email)
+    const emailAlreadyExists = users.find(user => user.email === email)
 
     if(emailAlreadyExists){
-        throw new Error("error")
+        throw new AppError(400,"Email already exists")
     }
 
     if(name === undefined || email === undefined || password === undefined || age === undefined){
-        return true
+        throw new AppError(400,"error")
     }
     
     const user = new User()
