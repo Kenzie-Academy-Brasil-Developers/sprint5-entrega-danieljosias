@@ -6,16 +6,17 @@ export class User{
     @PrimaryColumn('uuid')
     readonly id: string
 
-    @Column()
+    @Column({ nullable: true })
     name: string
+    
 
-    @Column()
+    @Column({ nullable: true })
     email: string
 
-    @Column()
+    @Column({ nullable: true })
     password: string
 
-    @Column()
+    @Column({ nullable: true })
     age: number
 
     @Column()

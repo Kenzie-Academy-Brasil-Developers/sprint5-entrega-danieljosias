@@ -10,10 +10,8 @@ import {IUser} from '../interfaces/user/index'
 //libs
 import bcrypt from 'bcrypt'
 
-//Error
-import { AppError } from '../errors/AppError'
 
-const updateUserSevices = async ({ name, email, password, age }:IUser,id:string) => {
+const updateUserSevices = async ({ name, email, password, age }:IUser, id:string) => {
     //regras de negócios
     const date = new Date()
     const newDate = date.toUTCString()
@@ -21,12 +19,6 @@ const updateUserSevices = async ({ name, email, password, age }:IUser,id:string)
 
     const userRepository = AppDataSource.getRepository(User)
     const users = await userRepository.find()
-
-    /* const account  = users.find(user => user.email === email)
-
-    if(!account){
-        throw new AppError(404,'User not exists')
-    } */
 
     const user = new User()
     user.name = name

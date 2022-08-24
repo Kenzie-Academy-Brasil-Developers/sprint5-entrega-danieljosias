@@ -6,13 +6,13 @@ const listOneUserController = async (req: Request, res:Response) =>{
 
     try {
         const user = await listOneUserSevices(id)
-        return res.status(200).send(user)
+        return res.status(200).json(user)
 
     } catch (error) {
         if(error instanceof Error){
-            return res.status(404).send({
-                "error": error.name,
-                "message": error.message
+            return res.status(404).json({
+                error: error,
+                message: error.message
             })
         }
     }

@@ -12,9 +12,9 @@ const deleteUserController = async (req: Request, res:Response) =>{
             })
     } catch (error) {
         if(error instanceof Error){
-            return res.status(404).send({
-                "error": error.name,
-                "message": error.message
+            return res.status(404).json({
+                error: error,
+                message: error.message
             })
         }
     }

@@ -9,9 +9,9 @@ const listUserController = async (req: Request, res:Response) =>{
         
     } catch (error) {
         if(error instanceof Error){
-            return res.status(400).send({
-                "error": error.name,
-                "message": error.message
+            return res.status(400).json({
+                error: error,
+                message: error.message
             })
         }
     }
